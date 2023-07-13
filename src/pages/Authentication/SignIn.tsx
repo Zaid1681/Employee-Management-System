@@ -62,10 +62,10 @@ const SignIn = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      // setTimeout(() => {
-      //   navigate('/');
-      //   window.location.reload();
-      // }, 3000);
+      setTimeout(() => {
+        navigate('/');
+        window.location.reload();
+      }, 3000);
     } catch (error: any) {
       const errorCode = error.code;
       const errorMessage = error.message;

@@ -6,6 +6,7 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
 import AssignTask from './pages/Form/AssignTask';
+import AssignedTask from './components/AssignedTask';
 
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Chart = lazy(() => import('./pages/Chart'));
@@ -39,6 +40,14 @@ function App() {
             element={
               <Suspense fallback={<Loader />}>
                 <Calendar />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/assigned"
+            element={
+              <Suspense fallback={<Loader />}>
+                <AssignedTask />
               </Suspense>
             }
           />
