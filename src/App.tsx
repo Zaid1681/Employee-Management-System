@@ -36,6 +36,13 @@ function App() {
   const RequirePath = ({ children }: any) => {
     return currentUser === null ? <Navigate to="/auth/signin" /> : children;
   };
+  const AdminPath = ({ children }: any) => {
+    return currentUser === 'admin' ? (
+      <Navigate to="/" />
+    ) : (
+      <Navigate to="/create" />
+    );
+  };
   console.log('currentUser', currentUser);
 
   return loading ? (
@@ -51,9 +58,11 @@ function App() {
           <Route
             index
             element={
-              <RequirePath>
-                <ECommerce />
-              </RequirePath>
+              <AdminPath>
+                <RequirePath>
+                  <ECommerce />
+                </RequirePath>
+              </AdminPath>
             }
           />
           <Route
