@@ -90,11 +90,7 @@ const SignIn = () => {
             <div className="py-17.5 px-26 text-center">
               <Link className="mb-5.5 inline-block" to="/">
                 <div className="mx-auto">
-                  <img
-                    src="/public/logo.png"
-                    className="mx-auto w-25"
-                    alt="Logo"
-                  />
+                  <img src={'/logo.png'} className="mx-auto w-25" alt="Logo" />
                   <h1 className="text-3xl font-bold">Emp Management</h1>
                 </div>
                 {/* <img className="hidden dark:block" src={Logo} alt="Logo" /> */}
