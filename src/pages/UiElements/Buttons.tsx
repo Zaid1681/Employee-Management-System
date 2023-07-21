@@ -63,13 +63,6 @@ const Buttons = () => {
 
             <Link
               to="#"
-              className="inline-flex items-center justify-center rounded-full bg-meta-3 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-            >
-              Button
-            </Link>
-
-            <Link
-              to="#"
               className="inline-flex items-center justify-center rounded-md border border-meta-3 py-4 px-10 text-center font-medium text-meta-3 hover:bg-opacity-90 lg:px-8 xl:px-10"
             >
               Button

@@ -7,11 +7,15 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 const AssignTask = () => {
+  const currentDate = new Date().toISOString().split('T')[0];
+
   // console.log('employee', employee);
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [title, setTitle] = useState('');
   const [des, setDes] = useState('');
+  const [date, setDate] = useState();
+
   // @ts-ignore
   const currentEmp = useSelector((state) => state.employee.currentEmployeeData);
   console.log('currentEmp data value  ', currentEmp);
@@ -29,6 +33,7 @@ const AssignTask = () => {
         name: name,
         title: title,
         des: des,
+        deadline: date,
         status: false,
         timeStamp: serverTimestamp(),
       });
@@ -54,6 +59,12 @@ const AssignTask = () => {
       });
     }
     // console.log(id, title, des, name);
+  };
+  // --- handling date change
+  // @ts-ignore
+  const handleDateChange = (e) => {
+    const reversedDate = e.target.value.split('-').reverse().join('-');
+    setDate(reversedDate);
   };
 
   return (
@@ -111,6 +122,33 @@ const AssignTask = () => {
               }}
               className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             />
+          </div>
+          <div className="flex gap-10 ">
+            <div className="w-full">
+              <label className="mb-3 block text-black dark:text-white">
+                From
+              </label>
+              <div className="relative">
+                <input
+                  type="date"
+                  className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  defaultValue={currentDate}
+                />
+              </div>
+            </div>
+            <div className="w-full">
+              <label className="mb-3 block text-black dark:text-white">
+                To
+              </label>
+              <div className="relative">
+                <input
+                  type="date"
+                  className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  // @ts-ignore
+                  onChange={handleDateChange}
+                />
+              </div>
+            </div>
           </div>
           <div>
             {' '}

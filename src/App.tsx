@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import ECommerce from './pages/Dashboard/ECommerce';
 import SignIn from './pages/Authentication/SignIn';
@@ -7,6 +7,10 @@ import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
 import AssignTask from './pages/Form/AssignTask';
 import AssignedTask from './components/AssignedTask';
+import CreateTask from './components/SelfTask/CreateTask';
+import TaskList from './components/SelfTask/TaskList';
+import EmpAssignedTask from './components/EmpAssignedTask';
+import { useSelector } from 'react-redux';
 
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Chart = lazy(() => import('./pages/Chart'));
@@ -26,15 +30,32 @@ function App() {
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
+  // @ts-ignore
+  const currentUser = useSelector((state) => state.user.currentUser);
+  // const currentUser = false;
+  const RequirePath = ({ children }: any) => {
+    return currentUser === null ? <Navigate to="/auth/signin" /> : children;
+  };
+  console.log('currentUser', currentUser);
+
   return loading ? (
     <Loader />
   ) : (
     <>
       <Routes>
+        {/* {currentUser === '' ? ( */}
         <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/auth/signup" element={<SignUp />} />
+        {/* ) : ( */}
+        // <Route path="/auth/signup" element={<SignUp />} />
         <Route element={<DefaultLayout />}>
-          <Route index element={<ECommerce />} />
+          <Route
+            index
+            element={
+              <RequirePath>
+                <ECommerce />
+              </RequirePath>
+            }
+          />
           <Route
             path="/calendar"
             element={
@@ -123,7 +144,34 @@ function App() {
               </Suspense>
             }
           />
+          <Route
+            path="/create"
+            element={
+              <Suspense fallback={<Loader />}>
+                <CreateTask />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/empAssigntask"
+            element={
+              <Suspense fallback={<Loader />}>
+                <EmpAssignedTask />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/tasklist"
+            element={
+              <Suspense fallback={<Loader />}>
+                <TaskList />
+              </Suspense>
+            }
+          />
+
+          {/* emp Section */}
         </Route>
+        {/* )} */}
       </Routes>
     </>
   );

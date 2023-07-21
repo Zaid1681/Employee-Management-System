@@ -1,24 +1,31 @@
-// import BrandOne from '../images/brand/brand-01.svg';
-// import BrandTwo from '../images/brand/brand-02.svg';
-// import BrandThree from '../images/brand/brand-03.svg';
-// import BrandFour from '../images/brand/brand-04.svg';
-import { collection, getDocs } from 'firebase/firestore';
-import { deleteDoc, doc } from 'firebase/firestore';
-
-// import { firestore } from './firebaseConfig';
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  setDoc,
+} from 'firebase/firestore';
 
 import { useState, useEffect } from 'react';
 import { auth, db } from '../firebase';
+import { Link } from 'react-router-dom';
 
-const AssignedList = () => {
+import { useDispatch } from 'react-redux';
+import TaskStatus from './TaskStatus';
+
+const EmpAssignedTask = () => {
+  // let navigate = useNavigate();
+  const [data, setData] = useState([] as any);
+  const [docId, setDocId] = useState('' as any);
+  const [status, setStatus] = useState(false);
   const currentDate = new Date()
     .toISOString()
     .split('T')[0]
     .split('-')
     .reverse()
     .join('-');
-  // let navigate = useNavigate();
-  const [data, setData] = useState([] as any);
+
   // @ts-ignore
   // const list = [];
   const [user, setUser] = useState('');
@@ -41,12 +48,15 @@ const AssignedList = () => {
   const fetchData = async () => {
     let list = [] as any;
     try {
-      const querySnapshot = await getDocs(collection(db, 'assignedTask'));
+      const q = query(collection(db, 'assignedTask'), where('tid', '==', user));
+      const querySnapshot = await getDocs(q);
+
       querySnapshot.forEach((doc) => {
         const taskData = doc.data();
         const id = doc.id;
         list.push({ ...taskData, id });
-        // list.push(taskData);
+        setDocId(doc.id);
+        console.log('doc id', doc.data());
 
         // data.push({ id: doc.id, ...taskData });
         // console.log(taskData);
@@ -59,23 +69,34 @@ const AssignedList = () => {
     }
     // console.log(list);
   };
+
+  //   task completed or not
+  //   @ts-ignore
+
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [user]);
 
-  // @ts-ignore
-  const taskDelete = async (id) => {
-    // e.preventDafault();
-    try {
-      window.confirm('Are you sure  ?');
-      console.log('Each task id :', id);
-      const data = doc(db, 'assignedTask', id);
-      await deleteDoc(data);
-      window.location.reload();
-    } catch (error) {
-      console.log('Erorr from Delete task : ', error);
-    }
-  };
+  //   useEffect(() => {
+  //     // @ts-ignore
+  //     const taskComplete = async () => {
+  //       await setDoc(doc(db, 'assignedTask', docId), {
+  //         status: status,
+  //         ...data,
+  //       });
+  //     };
+  //     taskComplete();
+  //   }, []);
+
+  // }, [list]);
+
+  // console.log('data assined', data);
+
+  //   console.log(data.map((item: any) => item));
+  // console.log(data[2].role);
+
+  //   console.log('status', status);
+  //   console.log('data', data);
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-1 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -89,10 +110,11 @@ const AssignedList = () => {
           {currentDate}
         </h4>
       </div>
+
       <div className="flex flex-col text-center">
-        <div className="grid w-[100%] rounded-sm bg-gray-2  dark:bg-meta-4 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-6">
+        <div className="grid w-[100%] rounded-sm bg-gray-2  dark:bg-meta-4 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5">
           <div className=" p-1  xl:p-5">
-            <span className="text-lg   ">Employee Name</span>
+            <span className="text-lg">Employee Name</span>
           </div>
           <div className=" p-1 text-center xl:p-5">
             <span className="uppercasee text-center text-lg font-medium">
@@ -113,15 +135,12 @@ const AssignedList = () => {
           <div className="hidden  p-1 text-center sm:block xl:p-5">
             <span className="uppercasee text-lg font-medium">Status</span>
           </div>
-          <div className="hidden  p-1 text-center sm:block xl:p-5">
-            <span className="uppercasee text-lg font-medium">Delete Task</span>
-          </div>
         </div>
 
         {data.map((item: any, index: any) => (
           <div className="border-b border-stroke dark:border-strokedark ">
-            {/* {console.log('item value ', item)} */}
-            <div className=" grid grid-cols-6 items-center    p-1 xl:p-3">
+            {/* {console.log(item.id)}; */}
+            <div className=" grid grid-cols-5 items-center    p-1 xl:p-3">
               <div className="flex items-center justify-center p-1 xl:p-5">
                 <p className="text-lg text-black dark:text-white">
                   {item.name}
@@ -137,24 +156,28 @@ const AssignedList = () => {
                 <p className="text-black dark:text-white">{item.deadline}</p>
               </div>
               <div className="text-md flex items-center justify-center p-1 xl:p-5">
-                {item.status === true ? (
-                  <span className="inline-flex items-center justify-center rounded-full bg-meta-3 py-3 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
-                    Done
-                  </span>
+                {/* {item.status == true ? (
+                  <button
+                    className="inline-flex items-center justify-center rounded-full bg-meta-3 py-3 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                    onClick={() => {
+                      //
+                      status == false ? setStatus(true) : setStatus(false);
+                    }}
+                  >
+                    Task Done
+                  </button>
                 ) : (
-                  <span className="inline-flex items-center justify-center rounded-full bg-[#F31559]  py-2 px-5 text-center font-medium text-white hover:bg-opacity-90">
+                  <button
+                    className="inline-flex items-center justify-center rounded-full bg-meta-3 py-3 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                    onClick={() => {
+                      status == false ? setStatus(true) : setStatus(false);
+                    }}
+                  >
                     Not Done
-                  </span>
-                )}
+                  </button>
+                )} */}
+                <TaskStatus data={item} />
               </div>
-              <button
-                className="mx-auto inline-flex w-[70%] items-center justify-center rounded-full  bg-meta-3 py-2 text-center font-medium text-white hover:bg-opacity-90"
-                onClick={() => {
-                  taskDelete(item.id);
-                }}
-              >
-                Delete
-              </button>
 
               {/* <AssignTask employee={item} /> */}
             </div>
@@ -165,4 +188,4 @@ const AssignedList = () => {
   );
 };
 
-export default AssignedList;
+export default EmpAssignedTask;

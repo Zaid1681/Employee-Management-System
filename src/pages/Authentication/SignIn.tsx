@@ -58,7 +58,7 @@ const SignIn = () => {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Login Sucessfull 🤩',
+        title: 'Login Sucessfull 😄 ',
         showConfirmButton: false,
         timer: 1500,
       });
@@ -84,18 +84,25 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="h-[100vh] w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
               <Link className="mb-5.5 inline-block" to="/">
-                <img className="hidden dark:block" src={Logo} alt="Logo" />
-                <img className="dark:hidden" src={LogoDark} alt="Logo" />
+                <div className="mx-auto">
+                  <img
+                    src="/public/logo.png"
+                    className="mx-auto w-25"
+                    alt="Logo"
+                  />
+                  <h1 className="text-3xl font-bold">Emp Management</h1>
+                </div>
+                {/* <img className="hidden dark:block" src={Logo} alt="Logo" /> */}
+                {/* <img className="dark:hidden" src={LogoDark} alt="Logo" /> */}
               </Link>
 
-              <p className="2xl:px-20">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                suspendisse.
+              <p className="text-xl 2xl:px-20">
+                Manage your Employee Effectively
               </p>
 
               <span className="mt-15 inline-block">
@@ -224,10 +231,18 @@ const SignIn = () => {
           </div>
 
           <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+            <div className=" text-center">
+              <p className="text-xl font-semibold text-black dark:text-white sm:text-title-md">
+                Admin or Employee
+                {/* <Link to="/auth/signup" className="text-primary">
+                      Sign Up
+                    </Link> */}
+              </p>
+            </div>
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
-              <span className="mb-1.5 block font-medium">Start for free</span>
+              {/* <span className="mb-1.5 block font-medium">Start for free</span> */}
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
-                Sign In to TailAdmin
+                Sign In to Emp Management
               </h2>
 
               <form action="" onSubmit={loginMe}>
@@ -266,14 +281,14 @@ const SignIn = () => {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    Re-type Password
+                    Password
                   </label>
                   <div className="relative">
                     <input
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      placeholder="6+ Characters, 1 Capital letter"
+                      placeholder="6+ Characters, "
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     />
 
@@ -309,7 +324,7 @@ const SignIn = () => {
                   />
                 </div>
 
-                <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
+                {/* <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
                   <span>
                     <svg
                       width="20"
@@ -344,16 +359,7 @@ const SignIn = () => {
                     </svg>
                   </span>
                   Sign in with Google
-                </button>
-
-                <div className="mt-6 text-center">
-                  <p>
-                    Don’t have any account?{' '}
-                    <Link to="/auth/signup" className="text-primary">
-                      Sign Up
-                    </Link>
-                  </p>
-                </div>
+                </button> */}
               </form>
             </div>
           </div>

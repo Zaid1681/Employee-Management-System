@@ -19,9 +19,11 @@ import { createUserWithEmailAndPassword } from '@firebase/auth';
 
 const CreateEmployee = () => {
   // checking user present or not
+  const currentDate = new Date().toISOString().split('T')[0];
   const [user, setUser] = useState({});
   const [uid, setUid] = useState('');
   const [data, setData] = useState({});
+  const [date, setDate] = useState(currentDate);
   const [file, setFile] = useState('');
 
   // --- employee details state --
@@ -101,16 +103,6 @@ const CreateEmployee = () => {
     unsubscribe();
   }, []);
 
-  // console.log('file', file);
-
-  // console.log('user : ', user);
-  // ---- getting current date -----
-  // @ts-ignore
-  // const handleDateChange = (event) => {
-  //   setCurrdate(event.target.value);
-  // };
-
-  // ---creting an employee ---
   // @ts-ignore
   const employeeCreate = async (e) => {
     e.preventDefault();
@@ -127,6 +119,7 @@ const CreateEmployee = () => {
 
         await setDoc(doc(db, 'Employee', res.user.uid), {
           ...data,
+          date: date,
           timeStamp: serverTimestamp(),
         });
         Swal.fire({
@@ -156,7 +149,10 @@ const CreateEmployee = () => {
       // setDes('');
       setTimeout(() => {
         navigate('/createEmployee');
-      }, 1000);
+
+        // setData({});
+        window.location.reload();
+      }, 2000);
       setData({});
     } else {
       setTimeout(() => {
@@ -172,6 +168,10 @@ const CreateEmployee = () => {
     }
   };
   // @ts-ignore
+  const handleDateChange = (e) => {
+    setDate(currentDate || e.target.value);
+    // date: currentDate || e.target.value;
+  };
 
   // ---- handle input
   // @ts-ignore
@@ -201,9 +201,10 @@ const CreateEmployee = () => {
                 {/* <div className="mb-4.5   flex-col  xl:flex-row"> */}
                 <div className="w-full xl:w-1/2">
                   <label className="mb-2.5 block text-black dark:text-white">
-                    First name
+                    First name <span className="text-meta-1">*</span>
                   </label>
                   <input
+                    required
                     type="text"
                     id="fname"
                     onChange={handleChange}
@@ -214,9 +215,10 @@ const CreateEmployee = () => {
 
                 <div className="w-full ">
                   <label className="mb-2.5 block text-black dark:text-white">
-                    Last name
+                    Last name <span className="text-meta-1">*</span>
                   </label>
                   <input
+                    required
                     type="text"
                     id="lname"
                     onChange={handleChange}
@@ -231,6 +233,7 @@ const CreateEmployee = () => {
                     Email <span className="text-meta-1">*</span>
                   </label>
                   <input
+                    required
                     type="email"
                     id="email"
                     onChange={handleChange}
@@ -304,20 +307,30 @@ const CreateEmployee = () => {
 
                 <div className="mb-4.5">
                   <label className="mb-2.5 block text-black dark:text-white">
-                    Date
+                    Date of Joining
                   </label>
-                  <input
+                  <div className="w-full">
+                    <div className="relative">
+                      <input
+                        onChange={handleDateChange}
+                        type="date"
+                        className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        defaultValue={currentDate}
+                      />
+                    </div>
+                  </div>
+                  {/* <input
                     type="number"
                     id="date"
                     onChange={handleChange}
                     placeholder="Select subject"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  />
+                  /> */}
                 </div>
 
                 <div className="mb-4.5">
                   <label className="mb-2.5 block text-black dark:text-white">
-                    Role
+                    Role <span className="text-meta-1">*</span>
                   </label>
                   <div className="relative z-20 bg-transparent dark:bg-form-input">
                     <select
@@ -368,11 +381,12 @@ const CreateEmployee = () => {
                 </div>
                 <div className="mb-4.5">
                   <label className="mb-2.5 block text-black dark:text-white">
-                    Create password
+                    Create password <span className="text-meta-1">*</span>
                   </label>
                   <input
                     type="password"
                     id="password"
+                    required
                     onChange={handleChange}
                     placeholder="Create Employee Password"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"

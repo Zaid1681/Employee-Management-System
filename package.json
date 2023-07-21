@@ -24,6 +24,7 @@
     "@testing-library/user-event": "^12.1.10",
     "apexcharts": "^3.37.0",
     "firebase": "^10.0.0",
+    "firebase-admin": "^11.10.1",
     "firebase-tools": "^12.4.3",
     "jsvectormap": "^1.5.1",
     "localforage": "^1.10.0",
