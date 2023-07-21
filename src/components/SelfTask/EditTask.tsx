@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 export default function EditTask({ data }: any) {
   const [showModal, setShowModal] = React.useState(false);
-  console.log('data of edit task', data);
+  // console.log('data of edit task', data);
 
   const [title, setTitle] = useState([data.title]);
   const [des, setDes] = useState([data.Description]);
@@ -14,9 +14,9 @@ export default function EditTask({ data }: any) {
   // @ts-ignore
   const saveChange = async (e) => {
     e.preventDefault();
-    console.log('update title: ', title);
-    console.log('update des: ', des);
-    console.log('update date: ', date);
+    // console.log('update title: ', title);
+    // console.log('update des: ', des);
+    // console.log('update date: ', date);
     try {
       const taskDocument = doc(db, 'selfTask', data.id);
       const docSnapshot = await getDoc(taskDocument);
@@ -67,7 +67,7 @@ export default function EditTask({ data }: any) {
         onClick={() => setShowModal(true)}
       >
         Update
-      </button>     
+      </button>
       {showModal ? (
         <>
           <div className="dark:bg-gray-800 fixed inset-0 z-50 flex items-center  justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">

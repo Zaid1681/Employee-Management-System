@@ -35,7 +35,7 @@ const EmpAssignedTask = () => {
         // User is authenticated, allow access to the rout
         // console.log('user', user.uid);
         setUser(user.uid);
-        console.log('assigned list ', user.uid);
+        // console.log('assigned list ', user.uid);
       } else {
         console.log('no user');
         // User is not authenticated, redirect to login or another route
@@ -56,7 +56,7 @@ const EmpAssignedTask = () => {
         const id = doc.id;
         list.push({ ...taskData, id });
         setDocId(doc.id);
-        console.log('doc id', doc.data());
+        // console.log('doc id', doc.data());
 
         // data.push({ id: doc.id, ...taskData });
         // console.log(taskData);

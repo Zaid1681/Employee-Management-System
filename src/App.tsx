@@ -37,11 +37,15 @@ function App() {
     return currentUser === null ? <Navigate to="/auth/signin" /> : children;
   };
   const AdminPath = ({ children }: any) => {
-    return currentUser === 'admin' ? (
-      <Navigate to="/" />
-    ) : (
-      <Navigate to="/create" />
-    );
+    // if (currentUser === 'admin') {
+    //   return <Navigate to="/" />;
+    // } else if (currentUser === 'employee') {
+    //   return <Navigate to="/create" />;
+    // } else if (currentUser === null) {
+    //   return <Navigate to="/auth/signin" />;
+    // }
+    // return currentUser === 'employee' && <Navigate to="/create" />;
+    return currentUser === 'employee' ? <Navigate to="/create" /> : children;
   };
   console.log('currentUser', currentUser);
 
@@ -62,6 +66,7 @@ function App() {
                 <RequirePath>
                   <ECommerce />
                 </RequirePath>
+                /{' '}
               </AdminPath>
             }
           />
@@ -69,7 +74,9 @@ function App() {
             path="/calendar"
             element={
               <Suspense fallback={<Loader />}>
-                <Calendar />
+                <RequirePath>
+                  <Calendar />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -77,7 +84,9 @@ function App() {
             path="/assigned"
             element={
               <Suspense fallback={<Loader />}>
-                <AssignedTask />
+                <RequirePath>
+                  <AssignedTask />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -85,7 +94,9 @@ function App() {
             path="/profile"
             element={
               <Suspense fallback={<Loader />}>
-                <Profile />
+                <RequirePath>
+                  <Profile />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -101,7 +112,9 @@ function App() {
             path="/createEmployee"
             element={
               <Suspense fallback={<Loader />}>
-                <CreateEmployee />
+                <RequirePath>
+                  <CreateEmployee />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -109,7 +122,9 @@ function App() {
             path="/employeeList"
             element={
               <Suspense fallback={<Loader />}>
-                <EmployeeList />
+                <RequirePath>
+                  <EmployeeList />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -117,7 +132,9 @@ function App() {
             path="/assignTask"
             element={
               <Suspense fallback={<Loader />}>
-                <AssignTask />
+                <RequirePath>
+                  <AssignTask />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -125,7 +142,9 @@ function App() {
             path="/settings"
             element={
               <Suspense fallback={<Loader />}>
-                <Settings />
+                <RequirePath>
+                  <Settings />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -157,7 +176,9 @@ function App() {
             path="/create"
             element={
               <Suspense fallback={<Loader />}>
-                <CreateTask />
+                <RequirePath>
+                  <CreateTask />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -165,7 +186,9 @@ function App() {
             path="/empAssigntask"
             element={
               <Suspense fallback={<Loader />}>
-                <EmpAssignedTask />
+                <RequirePath>
+                  <EmpAssignedTask />
+                </RequirePath>
               </Suspense>
             }
           />
@@ -173,7 +196,9 @@ function App() {
             path="/tasklist"
             element={
               <Suspense fallback={<Loader />}>
-                <TaskList />
+                <RequirePath>
+                  <TaskList />
+                </RequirePath>
               </Suspense>
             }
           />

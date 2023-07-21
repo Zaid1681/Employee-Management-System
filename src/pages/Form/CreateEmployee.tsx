@@ -181,7 +181,7 @@ const CreateEmployee = () => {
     setData({ ...data, [id]: value });
   };
   //@ts-ignore
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

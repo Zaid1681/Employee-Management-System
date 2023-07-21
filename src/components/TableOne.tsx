@@ -76,7 +76,7 @@ const TableOne = () => {
   ) => {
     event.preventDefault();
     try {
-      console.log('emp id ', item.id);
+      // console.log('emp id ', item.id);
 
       // const auth = getAuth(); // Get the Auth instance
 

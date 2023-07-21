@@ -37,7 +37,7 @@ const SignIn = () => {
       setUser(user);
       const docRef = doc(db, 'Employee', user.user.uid);
       const docSnap = await getDoc(docRef);
-      console.log('docSnap', docSnap.data());
+      // console.log('docSnap', docSnap.data());
       let fetchUser = docSnap.data();
       // @ts-ignore
       // console.log(fetchUser.role);

@@ -48,7 +48,7 @@ function TaskList() {
       getData();
     }
   }, [user]);
-  console.log('data : ', data);
+  // console.log('data : ', data);
 
   const handleaAdd = () => {
     navigate('/create');

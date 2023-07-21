@@ -26,7 +26,7 @@ const SignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // const user = userCredential.user;
-        console.log(userCredential);
+        // console.log(userCredential);
         console.log('User created sucessfully');
         // return user.updateProfile({
         //   displayName: name,
