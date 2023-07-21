@@ -71,7 +71,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <div className="mx-auto">
           <NavLink to="/">
-            <img src={'/logo.png'} className="mx-auto w-15" alt="Logo" />
+            <img src="/logo.png" className="mx-auto w-15" alt="Logo" />
             <h1 className="text-xl font-bold">Emp Management</h1>
           </NavLink>
         </div>
