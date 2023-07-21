@@ -113,8 +113,8 @@ const TableOne = () => {
 
       <div className="flex flex-col text-center">
         <div className="grid w-[100%] rounded-sm bg-gray-2  dark:bg-meta-4 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-10">
-          <div className="w-[10%] p-1  xl:p-3">
-            <span className="text-sm   ">Emp</span>
+          <div className="w-[10%] p-1 text-center  xl:p-3">
+            <span className=" text-sm ">Emp</span>
           </div>
           <div className="w-[10%] p-1  xl:p-3">
             <span className="text-sm   ">FName</span>
@@ -129,12 +129,12 @@ const TableOne = () => {
               Dept
             </span>
           </div>
-          <div className="hidde w-[10%]n p-1 text-left sm:block xl:p-3">
+          <div className="hidde w-[20%]  p-1 text-left sm:block xl:p-3">
             <span className="uppercasee  text-center text-sm font-medium">
               Emails
             </span>
           </div>
-          <div className="hidden w-[10%] p-1 text-left sm:block xl:p-3">
+          <div className="hidden w-[20%] p-1 text-left sm:block xl:p-3">
             <span className="uppercasee text-sm font-medium">Phone</span>
           </div>
           <div className="hidden w-[10%] p-1 text-left sm:block xl:p-3">
@@ -154,9 +154,10 @@ const TableOne = () => {
             className=" border-b border-stroke dark:border-strokedark "
           >
             {/* {console.log('items', item)} */}
-            <div className=" grid  grid-cols-10 items-center  p-1 xl:p-3">
-              <div className="flex items-center  p-1 xl:p-3">
-                <p className="text-black dark:text-white">{item.fname}</p>
+            <div className=" grid  w-[100%] grid-cols-10  items-center p-1 xl:p-3">
+              <div className="flex items-center  justify-start  p-1 xl:p-3">
+                {/* <p className="text-black dark:text-white">{item.fname}</p> */}
+                <img src="/user.png" className="item-left flex w-10 " alt="" />
               </div>
               <div className="flex items-center  p-1 xl:p-3">
                 <p className="text-black dark:text-white">{item.fname}</p>
@@ -166,19 +167,27 @@ const TableOne = () => {
                 <p className="text-black dark:text-white">{item.lname}</p>
               </div>
               <div className="flex items-center   p-1 xl:p-3">
-                <p className="text-black dark:text-white">{item.department}</p>
+                <p className="w-[5%] text-black dark:text-white">
+                  {item.department}
+                </p>
               </div>
-              <div className="flex items-center  justify-center  p-1 xl:p-3">
-                <p className="text-black dark:text-white">{item.email}</p>
+              <div className="items-left flex p-1  xl:p-3">
+                <p className="-ml-10 items-start text-sm text-black dark:text-white">
+                  {item.email}
+                </p>
               </div>
               <div className="flex items-center justify-center p-1 xl:p-3">
-                <p className="text-black dark:text-white">{item.phone}</p>
+                <p className="text-sm text-black dark:text-white">
+                  {item.phone}
+                </p>
               </div>
               <div className="flex items-center    p-1 xl:p-3">
                 <p className="text-black dark:text-white">{item.salary}</p>
               </div>
               <div className="w-[10% ] flex items-center  p-1 xl:p-3">
-                <p className="text-black dark:text-white">{item.date}</p>
+                <p className="text-xs text-black dark:text-white">
+                  {item.date}
+                </p>
               </div>
               <div className="flex items-center justify-center p-1 xl:p-3">
                 <button
