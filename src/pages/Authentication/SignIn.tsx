@@ -231,8 +231,12 @@ const SignIn = () => {
           </div>
 
           <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+            <div className="mx-auto  md:hidden ">
+              <img src="/logo.png" className="mx-auto mt-10 w-25" alt="Logo" />
+              <h1 className="text-center text-3xl font-bold">Emp Management</h1>
+            </div>
             <div className=" text-center">
-              <p className="text-xl font-semibold text-black dark:text-white sm:text-title-md">
+              <p className="mt-10 text-xl font-semibold text-black dark:text-white sm:text-title-md md:mt-4">
                 Admin or Employee
                 {/* <Link to="/auth/signup" className="text-primary">
                       Sign Up
