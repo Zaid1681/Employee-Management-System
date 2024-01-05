@@ -57,7 +57,7 @@ function App() {
         {/* {currentUser === '' ? ( */}
         <Route path="/auth/signin" element={<SignIn />} />
         {/* ) : ( */}
-        // <Route path="/auth/signup" element={<SignUp />} />
+        <Route path="/auth/signup" element={<SignUp />} />
         <Route element={<DefaultLayout />}>
           <Route
             index
