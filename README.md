@@ -80,19 +80,19 @@ Built with ❤️ using **React, Redux, Firebase, and Tailwind CSS**, this syste
 ## 🖼️ Application Screenshots
 
 > 📸 **Below are some screenshots showcasing the Admin portals:**
-<img src="Portal_Images/Admin/main.png" alt="Project Screenshot" width="400"/>
-<img src="Portal_Images/Admin/one.png" alt="Project Screenshot" width="400"/>
-<img src="Portal_Images/Admin/two.png" alt="Project Screenshot" width="400"/>
-<img src="Portal_Images/Admin/three.png" alt="Project Screenshot" width="400"/>
-<img src="Portal_Images/Admin/four.png" alt="Project Screenshot" width="400"/>
-<img src="Portal_Images/Admin/five.png" alt="Project Screenshot" width="400"/>
+<img src="Portal_Images/Admin/main.png" alt="Project Screenshot" width="600"/>
+<img src="Portal_Images/Admin/one.png" alt="Project Screenshot" width="600"/>
+<img src="Portal_Images/Admin/two.png" alt="Project Screenshot" width="600"/>
+<img src="Portal_Images/Admin/three.png" alt="Project Screenshot" width="600"/>
+<img src="Portal_Images/Admin/four.png" alt="Project Screenshot" width="600"/>
+<img src="Portal_Images/Admin/five.png" alt="Project Screenshot" width="600"/>
 
 
 --- 
 > 📸 **Below are some screenshots showcasing the Employee portals:**
-<img src="Portal_Images/Employee/one.png" alt="Project Screenshot" width="400"/>
-<img src="Portal_Images/Employee/two.png" alt="Project Screenshot" width="400"/>
-<img src="Portal_Images/Employee/three.png" alt="Project Screenshot" width="400"/>
+<img src="Portal_Images/Employee/one.png" alt="Project Screenshot" width="600"/>
+<img src="Portal_Images/Employee/two.png" alt="Project Screenshot" width="600"/>
+<img src="Portal_Images/Employee/three.png" alt="Project Screenshot" width="600"/>
 
 ---
 
