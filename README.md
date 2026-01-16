@@ -81,8 +81,6 @@ Built with ❤️ using **React, Redux, Firebase, and Tailwind CSS**, this syste
 
 > 📸 **Below are some screenshots showcasing the Admin and Employee portals:**
 
-*(Add screenshots here for better visual representation)*
-
 ---
 
 ## 🔐 Authentication & Security
@@ -131,3 +129,4 @@ Special thanks to:
 ### ⭐ If you like this project, don’t forget to star the repository!
 
 Happy Coding! 💻✨
+
